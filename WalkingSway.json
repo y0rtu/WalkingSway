@@ -1,0 +1,473 @@
+{
+  "author": "",
+  "category": "General",
+  "dimension": "2D",
+  "extensionNamespace": "",
+  "fullName": "WalkingSway",
+  "gdevelopVersion": "",
+  "helpPath": "",
+  "iconUrl": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0ibWRpLXdhbGsiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTQuMTIsMTBIMTlWOC4ySDE1LjM4TDEzLjM4LDQuODdDMTMuMDgsNC4zNyAxMi41NCw0LjAzIDExLjkyLDQuMDNDMTEuNzQsNC4wMyAxMS41OCw0LjA2IDExLjQyLDQuMTFMNiw1LjhWMTFINy44VjcuMzNMOS45MSw2LjY3TDYsMjJINy44TDEwLjY3LDEzLjg5TDEzLDE3VjIySDE0LjhWMTUuNTlMMTIuMzEsMTEuMDVMMTMuMDQsOC4xOE0xNCwzLjhDMTUsMy44IDE1LjgsMyAxNS44LDJDMTUuOCwxIDE1LDAuMiAxNCwwLjJDMTMsMC4yIDEyLjIsMSAxMi4yLDJDMTIuMiwzIDEzLDMuOCAxNCwzLjhaIiAvPjwvc3ZnPg==",
+  "name": "WalkingSway",
+  "previewIconUrl": "https://asset-resources.gdevelop.io/public-resources/Icons/941323cf01b837b2eb512ecbf0a95add8a195b3696eb6f5865dc090e526dc9b3_walk.svg",
+  "shortDescription": "Makes your character jiggle while moving.",
+  "version": "0.1",
+  "description": [
+    "Your character Has to have \"4 directional movement\" behavior and tween behavior.  ",
+    ""
+  ],
+  "tags": [
+    "character",
+    "walk",
+    "walking animation",
+    "animation"
+  ],
+  "authorIds": [
+    "hlMMsv2DYJXVlCGOdUKMKCemQDQ2"
+  ],
+  "dependencies": [],
+  "globalVariables": [],
+  "sceneVariables": [],
+  "eventsFunctions": [],
+  "eventsFunctionsFolderStructure": {
+    "folderName": "__ROOT"
+  },
+  "eventsBasedBehaviors": [
+    {
+      "description": "",
+      "fullName": "",
+      "helpPath": "",
+      "iconUrl": "",
+      "name": "Swaying",
+      "objectType": "",
+      "previewIconUrl": "",
+      "eventsFunctions": [
+        {
+          "fullName": "",
+          "functionType": "Action",
+          "name": "onCreated",
+          "sentence": "",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Tween::AddObjectAngleTween"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Tween",
+                    "\"AngleRight\"",
+                    "AngleRight",
+                    "\"easeInOutSine\"",
+                    "RandomInRange(AngleTimeMin * 1000,AngleTimeMax * 1000)",
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": []
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "WalkingSway::Swaying",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "fullName": "",
+          "functionType": "Action",
+          "name": "doStepPreEvents",
+          "sentence": "",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "TopDownMovementBehavior::IsMoving"
+                  },
+                  "parameters": [
+                    "Object",
+                    "TopDownMovement"
+                  ]
+                }
+              ],
+              "actions": [],
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Comment",
+                  "color": {
+                    "b": 109,
+                    "g": 230,
+                    "r": 255,
+                    "textB": 0,
+                    "textG": 0,
+                    "textR": 0
+                  },
+                  "comment": "Angle the object to the left"
+                },
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "Tween::HasFinished"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Tween",
+                        "\"AngleRight\""
+                      ]
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "Tween::RemoveTween"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Tween",
+                        "\"AngleRight\""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "Tween::AddObjectAngleTween"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Tween",
+                        "\"AngleLeft\"",
+                        "AngleLeft",
+                        "\"easeInOutSine\"",
+                        "RandomInRange(AngleTimeMin * 1000,AngleTimeMax * 1000)",
+                        ""
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "BuiltinCommonInstructions::Comment",
+                  "color": {
+                    "b": 109,
+                    "g": 230,
+                    "r": 255,
+                    "textB": 0,
+                    "textG": 0,
+                    "textR": 0
+                  },
+                  "comment": "Angle the object to the right"
+                },
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "Tween::HasFinished"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Tween",
+                        "\"AngleLeft\""
+                      ]
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "Tween::RemoveTween"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Tween",
+                        "\"AngleLeft\""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "Tween::AddObjectAngleTween"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Tween",
+                        "\"AngleRight\"",
+                        "AngleRight",
+                        "\"easeInOutSine\"",
+                        "RandomInRange(AngleTimeMin * 1000,AngleTimeMax * 1000)",
+                        ""
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": true,
+                    "value": "TopDownMovementBehavior::IsMoving"
+                  },
+                  "parameters": [
+                    "Object",
+                    "TopDownMovement"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Tween::AddObjectAngleTween"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Tween",
+                    "\"AngleReset\"",
+                    "0",
+                    "\"easeInOutSine\"",
+                    "50",
+                    ""
+                  ]
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "WalkingSway::Swaying",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "fullName": "",
+          "functionType": "Action",
+          "name": "ChangeAngle",
+          "sentence": "Sway the angle of _PARAM0_ to _PARAM2_° to the left and to _PARAM3_° to the right",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "AngleLeft",
+                    "=",
+                    "AngleLeftChanged"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "AngleRight",
+                    "=",
+                    "AngleRightChanged"
+                  ]
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "WalkingSway::Swaying",
+              "type": "behavior"
+            },
+            {
+              "description": "Angle to the left (degrees) - Use negative number",
+              "name": "AngleLeftChanged",
+              "type": "expression"
+            },
+            {
+              "description": "Angle to the right (degrees) - Use positive number",
+              "name": "AngleRightChanged",
+              "type": "expression"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "fullName": "",
+          "functionType": "Action",
+          "name": "ChangeAngleTime",
+          "sentence": "Tween angle time range for _PARAM0_, set minimum to _PARAM2_ seconds and maximum to _PARAM3_ seconds",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "AngleTimeMin",
+                    "=",
+                    "AngleTimeMinChanged"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "AngleTimeMax",
+                    "=",
+                    "AngleTimeMaxChanged"
+                  ]
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "WalkingSway::Swaying",
+              "type": "behavior"
+            },
+            {
+              "description": "Angle tween time minimum (seconds)",
+              "name": "AngleTimeMinChanged",
+              "type": "expression"
+            },
+            {
+              "description": "Angle tween time maximum (seconds)",
+              "name": "AngleTimeMaxChanged",
+              "type": "expression"
+            }
+          ],
+          "objectGroups": []
+        }
+      ],
+      "eventsFunctionsFolderStructure": {
+        "folderName": "__ROOT",
+        "children": [
+          {
+            "functionName": "onCreated"
+          },
+          {
+            "functionName": "doStepPreEvents"
+          },
+          {
+            "functionName": "ChangeAngle"
+          },
+          {
+            "functionName": "ChangeAngleTime"
+          }
+        ]
+      },
+      "propertyDescriptors": [
+        {
+          "value": "",
+          "type": "Behavior",
+          "label": "Top-down movement (4 or 8 directions)",
+          "extraInformation": [
+            "TopDownMovementBehavior::TopDownMovementBehavior"
+          ],
+          "choices": [],
+          "name": "TopDownMovement"
+        },
+        {
+          "value": "",
+          "type": "Behavior",
+          "label": "Tween",
+          "extraInformation": [
+            "Tween::TweenBehavior"
+          ],
+          "choices": [],
+          "name": "Tween"
+        },
+        {
+          "value": "-5",
+          "type": "Number",
+          "label": "Maximum angle to the left (in degrees) - Use a negative number",
+          "name": "AngleLeft"
+        },
+        {
+          "value": "5",
+          "type": "Number",
+          "label": "Maximum angle to the right (in degrees) - Use a positive number",
+          "name": "AngleRight"
+        },
+        {
+          "value": "1",
+          "type": "Number",
+          "label": "Mininum value for random tween time range for angle (seconds)",
+          "name": "AngleTimeMin"
+        },
+        {
+          "value": "3",
+          "type": "Number",
+          "label": "Maximum value for random tween time range for angle (seconds)",
+          "name": "AngleTimeMax"
+        }
+      ],
+      "propertiesFolderStructure": {
+        "folderName": "__ROOT",
+        "children": [
+          {
+            "propertyName": "Tween"
+          },
+          {
+            "propertyName": "AngleTimeMin"
+          },
+          {
+            "propertyName": "AngleTimeMax"
+          },
+          {
+            "propertyName": "AngleRight"
+          },
+          {
+            "propertyName": "AngleLeft"
+          },
+          {
+            "propertyName": "TopDownMovement"
+          }
+        ]
+      }
+    }
+  ],
+  "eventsBasedObjects": []
+}
